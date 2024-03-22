@@ -1,6 +1,6 @@
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
-studentId.innerHTML = 'Created by Deep Biswas - 200554124';
+studentId.innerHTML = '200554124';
 
 // Validations for the order submission of the user
 const form = document.getElementById("orderForm");
