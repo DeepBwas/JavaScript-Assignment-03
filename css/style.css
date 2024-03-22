@@ -45,3 +45,31 @@ header div a img{
     text-align: center;
     user-select: none;
 }
+#orderForm label{
+    font-family: 'SF-Pro', sans-serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 1rem;
+}
+#orderForm select{
+    font-family: 'SF-Pro', sans-serif;
+    font-size: 1.5rem;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 0.7rem;
+    padding: 0.4rem;
+}
+#orderForm select option{
+    font-family: 'SF-Pro', sans-serif;
+    font-size: 1.5rem;
+    color: #000;
+    background-color: #fff;
+}
+#userName{
+    font-family: 'SF-Pro', sans-serif;
+    font-size: 1.5rem;
+    border: #fff 1.5px solid;
+    border-radius: 0.7rem;
+    padding: 0.5rem;
+}

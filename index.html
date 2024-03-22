@@ -24,7 +24,26 @@
             <div class="m-container">
                 <h2>Order Your Own Pizza</h2>
                 <form id="orderForm">
-                    
+                    <label for="name">Enter your name:</label>
+                    <input type="text" name="name" id="userName" required>
+                    <label for="size">Select a size:</label>
+                    <select name="size" id="selectSize"></select>
+                    <label for="crust">Select a crust:</label>
+                    <select name="crust" id="selectCrust"></select>
+                    <label for="sauce">Select a Sauce:</label>
+                    <select name="sauce" id="selectSauce"></select>
+                    <label for="cheese">Select a Cheese:</label>
+                    <div name="cheese" id="cheeseContainer"></div>
+                    <label for="toppings">Select Toppings:</label>
+                    <div name="toppings" id="toppingsContainer"></div>
+                    <label for="condiments">Select Condiments:</label>
+                    <div name="condiments" id="condimentsContainer"></div>
+                    <label for="quantity">Select a quantity:</label>
+                    <select name="quantity" id="selectQuantity">
+                    </select>
+                    <label for="instructions">Add Special Instructions:</label>
+                    <textarea name="instructions" id="specialInstructions"></textarea>
+                    <button type="submit">Order</button>
                 </form>
             </div>
         </main>
