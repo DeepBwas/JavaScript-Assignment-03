@@ -1,3 +1,6 @@
+// Adding Dynamic Year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = '200554124';
@@ -147,4 +150,3 @@ for (var i = 1; i <= 100; i++){
     }
     selectQuantity.appendChild(option);
 }
-
