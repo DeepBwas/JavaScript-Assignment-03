@@ -7,7 +7,7 @@ const form = document.getElementById("orderForm");
 const userName = document.getElementById("userName");
 const specialInstructions = document.getElementById("specialInstructions");
 
-form.addEventListener("submit", function(event) {
+form.addEventListener("submit", function(event){
     // Remove whitespace from the start and end of the name
     var trimmedName = userName.value.trim();
 
@@ -21,10 +21,20 @@ form.addEventListener("submit", function(event) {
         alert("Name can only contain letters and spaces.");
         event.preventDefault();
     }
+    // Check if the name is under 30 characters
+    else if (trimmedName.length > 30) {
+        alert("Name cannot be more than 30 characters.");
+        event.preventDefault();
+    }
 
     // Check if the special instructions are too long
     if (specialInstructions.value.length > 400) {
         alert("Special instructions cannot be more than 200 characters.");
+        event.preventDefault();
+    }
+    // Check if the special instructions only contain letters and punctuation
+    else if (!/^[a-zA-Z\s.,!?]*$/.test(specialInstructions.value)) {
+        alert("Special instructions can only contain letters and punctuations.");
         event.preventDefault();
     }
 });
