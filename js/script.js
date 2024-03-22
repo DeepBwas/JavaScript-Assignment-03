@@ -2,9 +2,10 @@
 const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = 'Created by Deep Biswas - 200554124';
 
-// Validation for the name of the user
+// Validations for the order submission of the user
 const form = document.getElementById("orderForm");
 const userName = document.getElementById("userName");
+const specialInstructions = document.getElementById("specialInstructions");
 
 form.addEventListener("submit", function(event) {
     // Remove whitespace from the start and end of the name
@@ -20,7 +21,14 @@ form.addEventListener("submit", function(event) {
         alert("Name can only contain letters and spaces.");
         event.preventDefault();
     }
+
+    // Check if the special instructions are too long
+    if (specialInstructions.value.length > 400) {
+        alert("Special instructions cannot be more than 200 characters.");
+        event.preventDefault();
+    }
 });
+
 
 // Defining size options
 var sizeOptions = ["Select", "Small", "Medium", "Large", "X-Large"];
