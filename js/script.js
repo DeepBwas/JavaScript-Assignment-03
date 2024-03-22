@@ -119,7 +119,6 @@ condimentsOptions.forEach(function(condimentValue) {
 });
 
 // Quantity input
-// Quantity input
 var selectQuantity = document.getElementById("selectQuantity");
 for (var i = 1; i <= 100; i++) {
     var option = document.createElement("option");
