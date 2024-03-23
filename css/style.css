@@ -109,7 +109,12 @@ header div a img{
 }
 .submit-button:active{
     background-color: #fcee0a;
-    transform: scale(0.99);
+}
+input[type=checkbox]{
+    accent-color:  #fcee0a;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0.5rem;
 }
 /* Footer Styles */
 footer{

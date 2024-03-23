@@ -1,5 +1,4 @@
 // Deep Biswas - 200554124
-
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = '200554124';
@@ -159,7 +158,7 @@ class Pizza{
         this.quantity = quantity;
         this.specialInstructions = specialInstructions;
     }
-    // Adding a serveIt method that will generate a text output of the pizza ordered
+    // Adding a serveIt method that will generate a text output popup of the pizza ordered
     serveIt(){
         let condimentsText = this.condiments.length > 0 ? `and with ${this.condiments.join(", ")} as condiment(s).` : "without any condiments.";
         let specialInstructionsText = this.specialInstructions ? `Special instructions: ${this.specialInstructions}` : "No special instructions";
