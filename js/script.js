@@ -3,6 +3,7 @@ const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = '200554124';
 const studentName = document.querySelector('.dynamicName');
 studentName.textContent = 'Deep Biswas';
+const submitBtn = document.getElementById('submitBtn');
 
 // Adding Dynamic Year
 document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -128,19 +129,23 @@ function togglePopup(isSuccess){
     }
 
     popup.style.display = 'flex';
-    popupClose.addEventListener('click', function(){
-        popup.style.display = 'none';
-    });
-    window.addEventListener('click', function(){
-        popup.style.display = 'none';
-    });
-    document.querySelector('.popup-container').addEventListener('click', function(event){
-        event.stopPropagation();
-    });
 }
 
+// Add event listeners outside of the togglePopup function
+popupClose.addEventListener('click', function(){
+    popup.style.display = 'none';
+});
+window.addEventListener('click', function(event){
+    if (event.target == popup) {
+        popup.style.display = 'none';
+    }
+});
+document.querySelector('.popup-container').addEventListener('click', function(event){
+    event.stopPropagation();
+});
+
 // Defining the pizza object
-class Pizza {
+class Pizza{
     constructor(name, size, crust, sauce, cheese, toppings, condiments, quantity, specialInstructions) {
         this.name = name;
         this.size = size;
@@ -153,63 +158,88 @@ class Pizza {
         this.specialInstructions = specialInstructions;
     }
     // Adding a serveIt method that will generate a text output of the pizza ordered
-    serveIt() {
-        let specialInstructionsText = this.specialInstructions ? `Special instructions: ${this.specialInstructions}` : "with no special instructions";
-        let pizzaOrder = `Confirmed pizza order for ${this.name}: ${this.quantity} ${this.size} pizza with ${this.crust} crust, ${this.sauce} sauce, ${this.cheese.join(", ")} cheese, ${this.toppings.join(", ")} toppings, and ${this.condiments.join(", ")} condiments. ${specialInstructionsText}`;
+    serveIt(){
+        let condimentsText = this.condiments.length > 0 ? `and with ${this.condiments.join(", ")} as condiment(s)` : "without any condiments";
+        let specialInstructionsText = this.specialInstructions ? `Special instructions: ${this.specialInstructions}` : "No special instructions";
+        let pizzaOrder = `Confirmed pizza order for ${this.name}: ${this.quantity} ${this.size} pizza with ${this.crust} crust, ${this.sauce} sauce, ${this.cheese.join(", ")} cheese, ${this.toppings.join(", ")} toppings, ${condimentsText} ${specialInstructionsText}`;
         output.textContent = pizzaOrder;
         togglePopup(true);
     }
 }
 
+// let testPizza = new Pizza("Test", "medium", "thin", "tomato", ["mozzarella"], ["pepperoni", "ham"], ["olives"], 1, "");
+// testPizza.serveIt(); 
+
 // Form submit handler
-window.onload = function() {
-    document.getElementById('submitBtn').addEventListener('click', function(event){
-        event.preventDefault();
+let pizzaOut;
 
-        var form = document.getElementById('orderForm');
-
-        var userName = form.elements['name'].value;
-        var size = form.elements['size'].value;
-        var crust = form.elements['crust'].value;
-        var sauce = form.elements['sauce'].value;
-        var quantity = form.elements['quantity'].value;
-        var specialInstructions = form.elements['instructions'].value;
-        var cheese = Array.from(form.elements['cheese']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-        var toppings = Array.from(form.elements['topping']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-        var condiments = Array.from(form.elements['condiment']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-
-        // Validate name
-        if (!userName || userName.trim() === ''){
-            output.textContent = 'Please enter your name.';
-            togglePopup(false);
-            return;
-        }
-        if (!/^[a-zA-Z\s]*$/.test(userName)){
-            output.textContent = 'Please enter a valid name.';
-            togglePopup(false);
-            return;
-        }
-        if (userName.length > 30){
-            output.textContent = 'Name should be under 30 characters.';
-            togglePopup(false);
-            return;
-        }
-
-        // Validate special instructions
-        if (specialInstructions.length > 300) {
-            output.textContent = 'Too much special instructions. Please keep it under 300 characters.';
-            togglePopup(false);
-            return;
-        }
-        if (!/^[a-zA-Z0-9\s]*$/.test(specialInstructions)){
-            output.textContent = 'Please enter valid special instructions.';
-            togglePopup(false);
-            return;
-        }
-
-        let pizzaOut = new Pizza(userName, size, crust, sauce, cheese, toppings, condiments, quantity, specialInstructions);
-        console.log(pizzaOut);
-        pizzaOut.serveIt();
-    });
+submitBtn.addEventListener('click', function(event){
+    var form = document.getElementById('orderForm');
+    var userName = form.elements['name'].value;
+    var size = form.elements['size'].value;
+    var crust = form.elements['crust'].value;
+    var sauce = form.elements['sauce'].value;
+    var quantity = form.elements['quantity'].value;
+    var specialInstructions = form.elements['instructions'].value;
+    var cheese = Array.from(form.elements['cheese']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+    var toppings = Array.from(form.elements['topping']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+    var condiments = Array.from(form.elements['condiment']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
+    event.preventDefault();
+    // Validate name
+    if (!userName || userName.trim() === ''){
+        output.textContent = 'Please enter your name.';
+        togglePopup(false);
+        return;
+    }
+    if (!/^[a-zA-Z\s]*$/.test(userName)){
+        output.textContent = 'Please enter a valid name.';
+        togglePopup(false);
+        return;
+    }
+    if (userName.length > 30){
+        output.textContent = 'Name should be under 30 characters.';
+        togglePopup(false);
+        return;
+    }
+    // Validate parameters
+    if (size === "select"){
+        output.textContent = 'Please select a size.';
+        togglePopup(false);
+        return;
+    }
+    if (crust === "select"){
+        output.textContent = 'Please select a crust.';
+        togglePopup(false);
+        return;
+    }
+    if (sauce === "select"){
+        output.textContent = 'Please select a sauce.';
+        togglePopup(false);
+        return;
+    }
+    if (cheese.length === 0){
+        output.textContent = 'Please select at least one cheese.';
+        togglePopup(false);
+        return;
+    }
+    if (toppings.length === 0){
+        output.textContent = 'Please select at least one topping.';
+        togglePopup(false);
+        return;
+    }
+    // Validate special instructions
+    if (specialInstructions.length > 300){
+        output.textContent = 'Too much special instructions. Please keep it under 300 characters.';
+        togglePopup(false);
+        return;
+    }
+    if (!/^[a-zA-Z0-9\s]*$/.test(specialInstructions)){
+        output.textContent = 'Please enter valid special instructions.';
+        togglePopup(false);
+        return;
+    }
     
-}
+    pizzaOut = new Pizza(userName, size, crust, sauce, cheese, toppings, condiments, quantity, specialInstructions);
+    console.log(pizzaOut);
+    pizzaOut.serveIt();
+});
