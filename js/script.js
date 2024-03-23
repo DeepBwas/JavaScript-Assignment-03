@@ -4,13 +4,19 @@ document.getElementById('currentYear').textContent = new Date().getFullYear();
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = '200554124';
+const studentName = document.querySelector('.dynamicName');
+studentName.textContent = 'Deep Biswas';
+
 
 // Validations for the order submission of the user
 const form = document.getElementById("orderForm");
 const userName = document.getElementById("userName");
 const specialInstructions = document.getElementById("specialInstructions");
 
-form.addEventListener("submit", function(event){
+submitBtn = document.getElementById("submitBtn");
+submitBtn.addEventListener("submit", function(event){
+
+    // Prevent the form from refreshing the page
     event.preventDefault();
     // Remove whitespace from the start and end of the name
     var trimmedName = userName.value.trim();
@@ -18,28 +24,28 @@ form.addEventListener("submit", function(event){
     // Check if the name is empty
     if (trimmedName === "") {
         output.textContent = "Name cannot be empty.";
-        togglePopup();
+        togglePopup(false);
     }
     // Check if the name contains only letters and spaces
     else if (!/^[a-zA-Z\s]*$/.test(trimmedName)) {
         output.textContent = "Name can only contain letters and spaces.";
-        togglePopup();
+        togglePopup(false);
     }
     // Check if the name is under 30 characters
     else if (trimmedName.length > 30) {
         output.textContent = "Name cannot be more than 30 characters.";
-        togglePopup();
+        togglePopup(false);
     }
 
     // Check if the special instructions are too long
     if (specialInstructions.value.length > 400) {
         output.textContent = "Special instructions cannot be more than 400 characters.";
-        togglePopup();
+        togglePopup(false);
     }
     // Check if the special instructions only contain letters and punctuation
     else if (!/^[a-zA-Z\s.,!?]*$/.test(specialInstructions.value)) {
         output.textContent = "Special instructions can only contain letters, spaces, and punctuation.";
-        togglePopup();
+        togglePopup(false);
     }
 });
 
@@ -180,7 +186,14 @@ const popup = document.getElementById('popup');
 const popupClose = document.getElementById('closePopup');
 const output = document.getElementById('outputMsg');
 
-function togglePopup(){
+function togglePopup(isSuccess){
+    var popupImage = document.getElementById("popupImg");
+    if (isSuccess) {
+        popupImage.src = "./img/popup-tick-mark.png";
+    } else {
+        popupImage.src = "./img/popup-error-mark.png";
+    }
+
     popup.style.display = 'flex';
     popupClose.addEventListener('click', function(){
         popup.style.display = 'none';
