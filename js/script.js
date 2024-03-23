@@ -17,29 +17,29 @@ form.addEventListener("submit", function(event){
 
     // Check if the name is empty
     if (trimmedName === "") {
-        alert("Name is required.");
-        event.preventDefault();
+        output.textContent = "Name cannot be empty.";
+        togglePopup();
     }
     // Check if the name contains only letters and spaces
     else if (!/^[a-zA-Z\s]*$/.test(trimmedName)) {
-        alert("Name can only contain letters and spaces.");
-        event.preventDefault();
+        output.textContent = "Name can only contain letters and spaces.";
+        togglePopup();
     }
     // Check if the name is under 30 characters
     else if (trimmedName.length > 30) {
-        alert("Name cannot be more than 30 characters.");
-        event.preventDefault();
+        output.textContent = "Name cannot be more than 30 characters.";
+        togglePopup();
     }
 
     // Check if the special instructions are too long
     if (specialInstructions.value.length > 400) {
-        alert("Special instructions cannot be more than 200 characters.");
-        event.preventDefault();
+        output.textContent = "Special instructions cannot be more than 400 characters.";
+        togglePopup();
     }
     // Check if the special instructions only contain letters and punctuation
     else if (!/^[a-zA-Z\s.,!?]*$/.test(specialInstructions.value)) {
-        alert("Special instructions can only contain letters and punctuations.");
-        event.preventDefault();
+        output.textContent = "Special instructions can only contain letters, spaces, and punctuation.";
+        togglePopup();
     }
 });
 
@@ -178,6 +178,7 @@ for (var i = 1; i <= 100; i++){
 // Popup Handler
 const popup = document.getElementById('popup');
 const popupClose = document.getElementById('closePopup');
+const output = document.getElementById('outputMsg');
 
 function togglePopup(){
     popup.style.display = 'flex';
