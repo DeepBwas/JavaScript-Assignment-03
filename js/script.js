@@ -150,3 +150,20 @@ for (var i = 1; i <= 100; i++){
     }
     selectQuantity.appendChild(option);
 }
+
+// Popup Handler
+const popup = document.getElementById('popup');
+const popupClose = document.getElementById('closePopup');
+
+function togglePopup(){
+    popup.style.display = 'flex';
+    popupClose.addEventListener('click', function(){
+        popup.style.display = 'none';
+    });
+    window.addEventListener('click', function(){
+        popup.style.display = 'none';
+    });
+    document.querySelector('.popup-container').addEventListener('click', function(event){
+        event.stopPropagation();
+    });
+}
