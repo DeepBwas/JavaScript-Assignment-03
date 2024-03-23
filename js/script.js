@@ -1,9 +1,8 @@
 // Deep Biswas - 200554124
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
-studentId.innerHTML = '200554124';
 const studentName = document.querySelector('.dynamicName');
-studentName.textContent = 'Deep Biswas';
+
 const submitBtn = document.getElementById('submitBtn');
 
 // Adding Dynamic Year
@@ -172,6 +171,8 @@ class Pizza{
 let pizzaOut;
 
 submitBtn.addEventListener('click', function(event){
+    studentId.innerHTML = '200554124';
+    studentName.textContent = 'Deep Biswas';
     var form = document.getElementById('orderForm');
     var userName = form.elements['name'].value;
     var size = form.elements['size'].value;
