@@ -1,3 +1,5 @@
+// Deep Biswas - 200554124
+
 // Adding dynamic name and student ID to the page
 const studentId = document.getElementById('dynamicId');
 studentId.innerHTML = '200554124';
