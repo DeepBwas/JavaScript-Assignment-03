@@ -11,6 +11,7 @@ const userName = document.getElementById("userName");
 const specialInstructions = document.getElementById("specialInstructions");
 
 form.addEventListener("submit", function(event){
+    event.preventDefault();
     // Remove whitespace from the start and end of the name
     var trimmedName = userName.value.trim();
 
@@ -41,6 +42,29 @@ form.addEventListener("submit", function(event){
         event.preventDefault();
     }
 });
+
+// Defining the pizza object
+class Pizza {
+    constructor(name, size, crust, sauce, cheese, toppings, condiments, quantity, specialInstructions) {
+        this.name = name;
+        this.size = size;
+        this.crust = crust;
+        this.sauce = sauce;
+        this.cheese = cheese;
+        this.toppings = toppings;
+        this.condiments = condiments;
+        this.quantity = quantity;
+        this.specialInstructions = specialInstructions;
+    }
+
+    // Add a serveIt method that will generate a text output of the pizza ordered
+    serveIt() {
+        let specialInstructionsText = this.specialInstructions ? `Special instructions: ${this.specialInstructions}` : "with no special instructions";
+        let pizzaOrder = `Pizza order for ${this.name}, ${this.quantity} ${this.size} pizza with ${this.crust} crust, ${this.sauce} sauce, ${this.cheese.join(", ")} cheese, ${this.toppings.join(", ")} toppings, and ${this.condiments.join(", ")} condiments. ${specialInstructionsText}`;
+        return pizzaOrder;
+    }
+
+}
 
 
 // Defining size options
