@@ -169,17 +169,20 @@ footer{
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.5);
     user-select: none;
+    padding: 2vw;
 }
 .popup-container{
     background-color: #fafafa;
     width: 25vw;
-    height: 25vw;
+    min-height: 25vw;
+    max-height: fit-content;
     position: relative;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1vw;
 }
 #closePopup{
     position: absolute;

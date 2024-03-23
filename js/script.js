@@ -159,16 +159,13 @@ class Pizza{
     }
     // Adding a serveIt method that will generate a text output of the pizza ordered
     serveIt(){
-        let condimentsText = this.condiments.length > 0 ? `and with ${this.condiments.join(", ")} as condiment(s)` : "without any condiments";
+        let condimentsText = this.condiments.length > 0 ? `and with ${this.condiments.join(", ")} as condiment(s).` : "without any condiments.";
         let specialInstructionsText = this.specialInstructions ? `Special instructions: ${this.specialInstructions}` : "No special instructions";
         let pizzaOrder = `Confirmed pizza order for ${this.name}: ${this.quantity} ${this.size} pizza with ${this.crust} crust, ${this.sauce} sauce, ${this.cheese.join(", ")} cheese, ${this.toppings.join(", ")} toppings, ${condimentsText} ${specialInstructionsText}`;
         output.textContent = pizzaOrder;
         togglePopup(true);
     }
 }
-
-// let testPizza = new Pizza("Test", "medium", "thin", "tomato", ["mozzarella"], ["pepperoni", "ham"], ["olives"], 1, "");
-// testPizza.serveIt(); 
 
 // Form submit handler
 let pizzaOut;
@@ -228,13 +225,8 @@ submitBtn.addEventListener('click', function(event){
         return;
     }
     // Validate special instructions
-    if (specialInstructions.length > 300){
-        output.textContent = 'Too much special instructions. Please keep it under 300 characters.';
-        togglePopup(false);
-        return;
-    }
-    if (!/^[a-zA-Z0-9\s]*$/.test(specialInstructions)){
-        output.textContent = 'Please enter valid special instructions.';
+    if (specialInstructions.length > 1000){
+        output.textContent = 'Too much special instructions. Please keep it under 1000 characters.';
         togglePopup(false);
         return;
     }
