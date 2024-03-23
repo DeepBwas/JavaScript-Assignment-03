@@ -74,23 +74,5 @@
                 <div class="cr-text"><p>&#xA9; <span class="dynamicName"></span> <span id="currentYear"></span> - All rights reserved.</p></div>
             </div>
         </footer>
-    </body>document.getElementById('submitBtn').addEventListener('click', function(event){
-    event.preventDefault();
-
-    var form = document.getElementById('orderForm');
-
-    var userName = form.elements['name'].value;
-    var size = form.elements['size'].value;
-    var crust = form.elements['crust'].value;
-    var sauce = form.elements['sauce'].value;
-    var quantity = form.elements['quantity'].value;
-    var specialInstructions = form.elements['instructions'].value;
-
-    // For checkboxes, you need to loop through them and check which ones are checked
-    var cheese = Array.from(form.elements['cheese']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-    var toppings = Array.from(form.elements['toppings']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-    var condiments = Array.from(form.elements['condiments']).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
-
-    console.log(userName, size, crust, sauce, quantity, specialInstructions, cheese, toppings, condiments);
-});
+    </body>
 </html>
